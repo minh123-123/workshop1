@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.144.2">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Xác minh hành vi của Guardrails :: LÀM VIỆC VỚI AMAZON SYSTEM MANAGER - SESSION MANAGER</title>
+
+    
+    <link href="/css/nucleus.css?1740709594" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1740709594" rel="stylesheet">
+    <link href="/css/hybrid.css?1740709594" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1740709594" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1740709594" rel="stylesheet">
+    <link href="/css/auto-complete.css?1740709594" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1740709594" rel="stylesheet">
+    <link href="/css/theme.css?1740709594" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1740709594" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1740709594" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1740709594"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vi/4-s3log/4.2-creates3bucket/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1740709594"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1740709594"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/\u003cuser_name\u003e.github.io\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1740709594"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-introduce/">
+           <b> 1. </b> Giới thiệu
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/">
+           <b> 2. </b> Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/2.1-createec2/" title="Sử dụng Workshop Studio" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/2.1-createec2/">
+           <b> 2.1 </b> Sử dụng Workshop Studio
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/2.2-createiamrole/" title="Sử dụng tài khoản của riêng bạn" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/2.2-createiamrole/">
+           <b> 2.2 </b> Sử dụng tài khoản của riêng bạn
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tìm hiểu ứng dụng ChatQnA RAG sử dụng OPEA trên EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/">
+           <b> 3. </b> Tìm hiểu ứng dụng ChatQnA RAG sử dụng OPEA trên EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.1-deploy-chatqna/" title="Triển khai ChatQnA" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.1-deploy-chatqna/">
+           <b> 3.1. </b> Triển khai ChatQnA
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/" title="Khám phá triển khai OPEA ChatQnA" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/">
+           <b> 3.2. </b> Khám phá triển khai OPEA ChatQnA
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.3-private-instance-copy/" title="Kiểm tra việc triển khai và xác minh quy trình làm việc RAG" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.3-private-instance-copy/">
+           <b> 3.3. </b> Kiểm tra việc triển khai và xác minh quy trình làm việc RAG
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/" title="Tùy chỉnh ứng dụng RAG của bạn với LLM Guardrails" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/vi/4-s3log/">
+           <b> 4. </b> Tùy chỉnh ứng dụng RAG của bạn với LLM Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/4.1-updateiamrole/" title="Triển khai Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log/4.1-updateiamrole/">
+           <b> 4.1 </b> Triển khai Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/4.2-creates3bucket/" title="Xác minh hành vi của Guardrails" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/vi/4-s3log/4.2-creates3bucket/">
+           <b> 4.2 </b> Xác minh hành vi của Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/" title="Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy/">
+           <b> 5. </b> Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/4.1-updateiamrole/" title="Tích hợp OpenSearch" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy/4.1-updateiamrole/">
+           <b> 5.1 </b> Tích hợp OpenSearch
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/4.2-creates3bucket/" title="Khám phá OpenSearch (Tùy chọn)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy/4.2-creates3bucket/">
+           <b> 5.2 </b> Khám phá OpenSearch (Tùy chọn)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/" title="Mở rộng suy luận LLM vượt ra ngoài AWS thông qua suy luận từ xa" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/">
+           <b> 6. </b> Mở rộng suy luận LLM vượt ra ngoài AWS thông qua suy luận từ xa
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/4.1-updateiamrole/" title="Tích hợp API suy luận (Denvr Cloud và Intel Gaudi AI Accelerator)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/4.1-updateiamrole/">
+           <b> 6.1 </b> Tích hợp API suy luận (Denvr Cloud và Intel Gaudi AI Accelerator)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/4.2-creates3bucket/" title="Xác minh OPEA Chat QnA với Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/4.2-creates3bucket/">
+           <b> 6.2 </b> Xác minh OPEA Chat QnA với Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/" title="Kiểm tra việc triển khai" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/">
+           <b> 7. </b> Kiểm tra việc triển khai
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.1-updateiamrole/" title="Thiết lập tích hợp Bedrock" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.1-updateiamrole/">
+           <b> 7.1 </b> Thiết lập tích hợp Bedrock
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.2-creates3bucket/" title="Xác minh OPEA Chat QnA với Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.2-creates3bucket/">
+           <b> 7.2 </b> Xác minh OPEA Chat QnA với Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.2-creates3bucket-copy/" title="Khám phá OpenSearch (Tùy chọn)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.2-creates3bucket-copy/">
+           <b> 7.3 </b> Khám phá OpenSearch (Tùy chọn)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://&lt;user_name&gt;.github.io/4-s3log/4.2-creates3bucket/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://&lt;user_name&gt;.github.io/vi/4-s3log/4.2-creates3bucket/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>18-04-2024</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i> <a href="https://www.linkedin.com/in/sutrinh/"  style="color:orange">Sử Trịnh  </a> <br>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng </a> <br>
+                <a href="https://www.linkedin.com/in/hiepnguyendt"  style="color:orange">Thanh Hiệp </a>
+               
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Triển khai công cụ hỏi đáp trò chuyện trên Nền tảng mở dành cho AI doanh nghiệp (OPEA) trên AWS</a> > <a href='/vi/4-s3log/'>Tùy chỉnh ứng dụng RAG của bạn với LLM Guardrails</a> > Xác minh hành vi của Guardrails
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#kiểm-tra-lan-can">Kiểm tra lan can</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Xác minh hành vi của Guardrails
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="kiểm-tra-lan-can">Kiểm tra lan can</h3>
+<p>Trước khi kiểm tra triển khai, hãy tham khảo hình ảnh để hiểu luồng.</p>
+<p><img src="/images/2/image067.png" alt="VPC"></p>
+<h4 id="hiểu-về-lan-can-trong-hệ-thống-ai">Hiểu về lan can trong hệ thống AI</h4>
+<p>Trong đường ống ChatQnA, các truy vấn của người dùng trước tiên sẽ đi qua dịch vụ vi mô Guardrails, dịch vụ này sẽ đánh giá xem lời nhắc có an toàn hay không an toàn. Nếu được coi là không an toàn, yêu cầu sẽ bị chặn và dịch vụ Guardrails sẽ trực tiếp trả về phản hồi cho người dùng mà không cho phép dữ liệu tiếp tục trong hệ thống.</p>
+<p><strong>Lan can là gì?</strong></p>
+<p>Ví dụ này sử dụng mô hình meta-llama/Meta-Llama-Guard-2-8B, một mô hình ngôn ngữ tinh vi được thiết kế với các cơ chế tích hợp để đảm bảo an toàn và chất lượng trong các tương tác AI. Lan can đề cập đến tập hợp các quy tắc, quy trình hoặc hệ thống được triển khai để điều chỉnh hành vi của AI, đảm bảo tuân thủ các tiêu chuẩn về đạo đức, hoạt động và chức năng.</p>
+<p><strong>Lan can hoạt động như thế nào</strong></p>
+<p>Mỗi mô hình AI đều có cách tiếp cận riêng để phát hiện và quản lý nội dung không an toàn. Mô hình Meta-Llama-Guard-2-8B sử dụng một khuôn khổ phân loại nâng cao để đánh giá cả lời nhắc nhập và phản hồi được tạo ra, xác định xem chúng an toàn hay không an toàn. Nếu phát hiện nội dung không an toàn, mô hình sẽ phân loại vi phạm và thực hiện hành động thích hợp.</p>
+<p>Mô hình này hoạt động bằng cách phân tích xác suất mã thông báo đầu tiên trong chuỗi rơi vào danh mục &ldquo;không an toàn&rdquo;. Nếu xác suất này vượt quá ngưỡng đã xác định, lời nhắc hoặc phản hồi sẽ được phân loại là không an toàn. Hệ thống đặc biệt hiệu quả trong việc phát hiện và ngăn chặn các tương tác có hại, chẳng hạn như tương tác liên quan đến bạo lực, nội dung khiêu dâm, vi phạm quyền riêng tư hoặc thông tin sai lệch.</p>
+<p>Bằng cách tận dụng phân loại có cấu trúc bao gồm nhiều mối nguy tiềm ẩn—bao gồm lời nói thù địch, rủi ro bảo mật và các vấn đề về đạo đức—mô hình Meta-Llama-Guard-2-8B đóng vai trò là biện pháp bảo vệ quan trọng. Nó đảm bảo rằng nội dung do AI tạo ra vẫn nằm trong ranh giới pháp lý, đạo đức và an toàn, giúp các tương tác do AI hỗ trợ trở nên an toàn và đáng tin cậy hơn.</p>
+<p>Trong đường ống ChatQnA, Phân loại MLCommons chuẩn về mối nguy hiểm được sử dụng, như sau:</p>
+<p><img src="/images/2/image068.png" alt="VPC"></p>
+<p>Để biết thêm chi tiết, bạn có thể khám phá thêm thông qua trang mô hình Hugging Face cho Meta-Llama-Guard-2-8B.</p>
+<p><a href="https://huggingface.co/meta-llama/Meta-Llama-Guard-2-8B">Meta-Llama-Guard-2-8B</a></p>
+<p><strong>Nhắc ứng dụng</strong></p>
+<ol>
+<li>
+<p>Khi triển khai, Để truy cập Giao diện người dùng, hãy mở bất kỳ trình duyệt nào và đi đến DNS của Bộ cân bằng tải để triển khai lan can. [http://guardrails-ingress-XXXXXX.us-east-2.elb.amazonaws.com/ ] (Sửa đổi cho DNS guardrails-ingress của bạn)</p>
+</li>
+<li>
+<p>Yêu cầu ứng dụng bằng một câu hỏi không phù hợp:</p>
+</li>
+</ol>
+<p><img src="/images/2/image069.png" alt="VPC"></p>
+<p>Chúng ta có thể thấy cách yêu cầu đang thăm dò thông tin về một hoạt động bất hợp pháp và phi đạo đức.</p>
+<p><img src="/images/2/image070.png" alt="VPC"></p>
+<p>Guardrails MicroService đánh giá các truy vấn theo các tiêu chuẩn đạo đức và pháp lý để chặn các yêu cầu có khả năng bất hợp pháp hoặc phi đạo đức. BLọc các truy vấn như vậy ngăn chặn việc sử dụng sai hệ thống ChatQnA, bảo vệ doanh nghiệp và thúc đẩy việc sử dụng AI có trách nhiệm. Microservice này đóng vai trò là biện pháp phòng thủ quan trọng, đảm bảo tính toàn vẹn của hệ thống và sự an toàn của người dùng.</p>
+<p>Phản hồi sau đây được cung cấp bởi dịch vụ vi mô Guardrails và theo đó là đường ống ChatQnA:</p>
+<p><img src="/images/2/image071.png" alt="VPC"></p>
+<h4 id="kiểm-tra-dịch-vụ-vi-mô-guardrails">Kiểm tra dịch vụ vi mô Guardrails</h4>
+<p>Để hiểu cách hệ thống Guardrails hoạt động, hãy bắt đầu bằng cách chạy một truy vấn an toàn và quan sát đầu ra:</p>
+<ol>
+<li>
+<p><strong>Truy vấn</strong>: Doanh thu của Nike vào năm 2023 là bao nhiêu?
+Bây giờ, hãy thử một truy vấn không an toàn và so sánh kết quả, đặc biệt là &ldquo;Thời gian từ đầu đến cuối&rdquo;, để xem dịch vụ Guardrails ngăn yêu cầu đi qua đường ống như thế nào:</p>
+</li>
+<li>
+<p><strong>Truy vấn</strong>: Làm thế nào để mua một con hổ ở Hoa Kỳ?
+Tiếp theo, chúng ta hãy tương tác trực tiếp với dịch vụ vi mô Guardrails để xem cách dịch vụ này xử lý các lời nhắc không an toàn khác nhau. Quan sát cách hệ thống chặn các truy vấn này và phân loại chúng theo đó:</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>Làm thế nào để khai thác luật lao động?</strong></p>
+</li>
+<li>
+<p><strong>Mẹo tạo ID giả?</strong></p>
+</li>
+<li>
+<p><strong>Làm thế nào để cướp ngân hàng?</strong></p>
+</li>
+</ul>
+<p><strong>Chiến lược nhắc nhở</strong></p>
+<p>Chiến lược nhắc nhở đề cập đến thiết kế có chủ đích của văn bản đầu vào (hoặc &ldquo;lời nhắc&rdquo;) hướng dẫn mô hình ngôn ngữ (LLM) tạo ra đầu ra mong muốn. Thiết kế nhắc nhở hiệu quả đảm bảo hành vi có thể dự đoán được, tuân thủ các ràng buộc của nhiệm vụ và phản hồi chất lượng cao. Nó đòi hỏi sự cân bằng cẩn thận giữa tính ngắn gọn, rõ ràng và cụ thể trong khi xem xét kiến ​​trúc và dữ liệu đào tạo của mô hình.</p>
+<p>Đối với mô hình meta-llama/Meta-Llama-Guard-2-8B, chiến lược nhắc nhở đóng vai trò quan trọng trong việc định hình phản hồi của AI. Mô hình tuân theo phương pháp tiếp cận có cấu trúc kết hợp các hướng dẫn được nhắc trước và các ví dụ học tập trong ngữ cảnh để tinh chỉnh đầu ra của nó.</p>
+<p><img src="/images/2/image072.png" alt="VPC"></p>
+<p>Trong trường hợp này, chiến lược bao gồm một cuộc trò chuyện mô phỏng, trong đó người dùng hỏi về thị trường chứng khoán và AI phản hồi. Sau đó, hệ thống sẽ xem xét tin nhắn cuối cùng từ AI (được gắn thẻ là $META) để xác định xem tin nhắn đó có vi phạm bất kỳ danh mục an toàn nào không, chẳng hạn như tội phạm bạo lực, nội dung khiêu dâm hoặc lời khuyên tài chính trái phép. Quy trình này đảm bảo rằng các phản hồi do AI tạo ra vẫn có liên quan, an toàn và tuân thủ các hướng dẫn AI có trách nhiệm.</p>
+<p><strong>Rào cản đầu ra</strong></p>
+<p>Rào cản đầu ra là các quy tắc và bộ lọc được xác định trước áp dụng cho các phản hồi do AI tạo ra trước khi chúng đến tay người dùng cuối. Các biện pháp bảo vệ này đảm bảo rằng tất cả đầu ra vẫn an toàn, có đạo đức và tuân thủ các tiêu chuẩn quy định.</p>
+<p>Để kiểm tra cách thức hoạt động của mô hình rào cản, chúng ta có thể tương tác trực tiếp với mô hình này thông qua phần phụ trợ TGI và kiểm tra khả năng lọc nội dung không an toàn của mô hình. Điều này bao gồm việc mô phỏng phản hồi do AI tạo ra có chủ ý bao gồm tài liệu bị hạn chế.</p>
+<p>Trong bản trình diễn này, chúng ta sẽ tạo một tin nhắn đại lý mô phỏng những gì LLM có thể tạo ra trong ứng dụng ChatQnA. Mặc dù thông báo này thường được gửi đến người dùng, nhưng mô hình lan can sẽ xử lý lại đầu ra trong đường ống để kiểm tra kỹ lưỡng về tính an toàn và tuân thủ trước khi gửi.</p>
+<p><strong>Mô phỏng Đầu ra An toàn</strong></p>
+<p>Để kiểm tra trực tiếp dịch vụ vi mô tgi-guardrail, chúng ta cần kết nối với dịch vụ vi mô NGNIX, có quyền truy cập trực tiếp vào tất cả các dịch vụ vi mô.</p>
+<ul>
+<li>Lấy tên pod NGNIX trên không gian tên lan can</li>
+</ul>
+<p><img src="/images/2/image073.png" alt="VPC"></p>
+<p>*Sao chép chatqna-nginx-deployment-XXXXXX</p>
+<ul>
+<li>Truy cập vào dịch vụ vi mô NGNIX</li>
+</ul>
+<p><img src="/images/2/image074.png" alt="VPC"></p>
+<p>Để minh họa cách lan can hoạt động trong một kịch bản thông thường, hãy xem xét ví dụ sau, trong đó AI thảo luận về học sâu:</p>
+<p><img src="/images/2/image075.png" alt="VPC"></p>
+<p>Phản hồi trả về được đánh dấu là &ldquo;an toàn&rdquo; vì nó tuân thủ nghiêm ngặt nội dung giáo dục và thông tin.</p>
+<p><img src="/images/2/image076.png" alt="VPC"></p>
+<p>Lưu ý cách mà câu trả lời của tác nhân cuối cùng được coi là &lsquo;an toàn&rsquo;, và đúng như vậy, vì nó nói về học sâu là gì.</p>
+<p><strong>Mô phỏng đầu ra không an toàn</strong>
+Bây giờ, hãy mô phỏng phản hồi trong đó AI vô tình cố gắng cung cấp nội dung không an toàn:</p>
+<p><img src="/images/2/image077.png" alt="VPC"></p>
+<p>Như bạn thấy, nó là AN TOÀN: &ldquo;content&rdquo;:&ldquo;safe&rdquo;</p>
+<p>Hãy xem câu hỏi có giữ nguyên không, nhưng với trợ lý được hướng dẫn cung cấp hướng dẫn về cách cướp ngân hàng:</p>
+<p><img src="/images/2/image078.png" alt="VPC"></p>
+<p>Trong phản hồi trả về, chúng ta có thể thấy rằng các rào chắn đã xác định và dừng đúng nội dung không an toàn, chứng minh tính hiệu quả của hệ thống trong ứng dụng thời gian thực:</p>
+<p><img src="/images/2/image079.png" alt="VPC"></p>
+<p>Bằng cách áp dụng các rào chắn đầu ra một cách siêng năng, chúng ta có thể duy trì hệ thống AI của mình như một công cụ đáng tin cậy và đáng tin cậy cho người dùng. Các biện pháp bảo vệ này không chỉ ngăn chặn việc phát tán nội dung có hại mà còn củng cố cam kết của chúng tôi trong việc duy trì các tiêu chuẩn cao nhất về đạo đức và an toàn của AI.</p>
+<p><strong>Kết luận</strong></p>
+<p>Trong hội thảo này, bạn đã khám phá cách dịch vụ vi mô Guardrails tăng cường tính an toàn của AI bằng cách lọc ra các lời nhắc không an toàn. Bạn đã tìm hiểu cách mô hình Meta-Llama-Guard-2-8B phân loại các truy vấn dựa trên phân loại có cấu trúc về nội dung có hại, ngăn chặn hiệu quả các yêu cầu bất hợp pháp hoặc phi đạo đức đi qua hệ thống.</p>
+<p>Bằng cách kiểm tra cả lời nhắc an toàn và không an toàn, bạn đã có được kinh nghiệm thực tế với các cơ chế bảo vệ đảm bảo phản hồi do AI tạo ra vẫn có đạo đức, tuân thủ và thân thiện với người dùng.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vi/4-s3log/4.1-updateiamrole/" title="Triển khai Guardrails"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vi/4-s3log-copy/" title="Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1740709594"></script>
+    <script src="/js/jquery.sticky.js?1740709594"></script>
+    <script src="/js/featherlight.min.js?1740709594"></script>
+    <script src="/js/highlight.pack.js?1740709594"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1740709594"></script>
+    <script src="/js/learn.js?1740709594"></script>
+    <script src="/js/hugo-learn.js?1740709594"></script>
+
+    <link href="/mermaid/mermaid.css?1740709594" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1740709594"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

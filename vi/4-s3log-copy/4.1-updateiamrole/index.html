@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.144.2">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Tích hợp OpenSearch :: LÀM VIỆC VỚI AMAZON SYSTEM MANAGER - SESSION MANAGER</title>
+
+    
+    <link href="/css/nucleus.css?1740709594" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1740709594" rel="stylesheet">
+    <link href="/css/hybrid.css?1740709594" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1740709594" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1740709594" rel="stylesheet">
+    <link href="/css/auto-complete.css?1740709594" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1740709594" rel="stylesheet">
+    <link href="/css/theme.css?1740709594" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1740709594" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1740709594" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1740709594"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vi/4-s3log-copy/4.1-updateiamrole/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1740709594"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1740709594"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/\u003cuser_name\u003e.github.io\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1740709594"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-introduce/">
+           <b> 1. </b> Giới thiệu
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/">
+           <b> 2. </b> Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/2.1-createec2/" title="Sử dụng Workshop Studio" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/2.1-createec2/">
+           <b> 2.1 </b> Sử dụng Workshop Studio
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-prerequiste/2.2-createiamrole/" title="Sử dụng tài khoản của riêng bạn" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-prerequiste/2.2-createiamrole/">
+           <b> 2.2 </b> Sử dụng tài khoản của riêng bạn
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tìm hiểu ứng dụng ChatQnA RAG sử dụng OPEA trên EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/">
+           <b> 3. </b> Tìm hiểu ứng dụng ChatQnA RAG sử dụng OPEA trên EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.1-deploy-chatqna/" title="Triển khai ChatQnA" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.1-deploy-chatqna/">
+           <b> 3.1. </b> Triển khai ChatQnA
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/" title="Khám phá triển khai OPEA ChatQnA" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/">
+           <b> 3.2. </b> Khám phá triển khai OPEA ChatQnA
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-accessibilitytoinstances/3.3-private-instance-copy/" title="Kiểm tra việc triển khai và xác minh quy trình làm việc RAG" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-accessibilitytoinstances/3.3-private-instance-copy/">
+           <b> 3.3. </b> Kiểm tra việc triển khai và xác minh quy trình làm việc RAG
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/" title="Tùy chỉnh ứng dụng RAG của bạn với LLM Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log/">
+           <b> 4. </b> Tùy chỉnh ứng dụng RAG của bạn với LLM Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/4.1-updateiamrole/" title="Triển khai Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log/4.1-updateiamrole/">
+           <b> 4.1 </b> Triển khai Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log/4.2-creates3bucket/" title="Xác minh hành vi của Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log/4.2-creates3bucket/">
+           <b> 4.2 </b> Xác minh hành vi của Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/" title="Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy/">
+           <b> 5. </b> Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/4.1-updateiamrole/" title="Tích hợp OpenSearch" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/vi/4-s3log-copy/4.1-updateiamrole/">
+           <b> 5.1 </b> Tích hợp OpenSearch
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy/4.2-creates3bucket/" title="Khám phá OpenSearch (Tùy chọn)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy/4.2-creates3bucket/">
+           <b> 5.2 </b> Khám phá OpenSearch (Tùy chọn)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/" title="Mở rộng suy luận LLM vượt ra ngoài AWS thông qua suy luận từ xa" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/">
+           <b> 6. </b> Mở rộng suy luận LLM vượt ra ngoài AWS thông qua suy luận từ xa
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/4.1-updateiamrole/" title="Tích hợp API suy luận (Denvr Cloud và Intel Gaudi AI Accelerator)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/4.1-updateiamrole/">
+           <b> 6.1 </b> Tích hợp API suy luận (Denvr Cloud và Intel Gaudi AI Accelerator)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-2/4.2-creates3bucket/" title="Xác minh OPEA Chat QnA với Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-2/4.2-creates3bucket/">
+           <b> 6.2 </b> Xác minh OPEA Chat QnA với Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/" title="Kiểm tra việc triển khai" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/">
+           <b> 7. </b> Kiểm tra việc triển khai
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.1-updateiamrole/" title="Thiết lập tích hợp Bedrock" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.1-updateiamrole/">
+           <b> 7.1 </b> Thiết lập tích hợp Bedrock
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.2-creates3bucket/" title="Xác minh OPEA Chat QnA với Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.2-creates3bucket/">
+           <b> 7.2 </b> Xác minh OPEA Chat QnA với Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-s3log-copy-3/4.2-creates3bucket-copy/" title="Khám phá OpenSearch (Tùy chọn)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-s3log-copy-3/4.2-creates3bucket-copy/">
+           <b> 7.3 </b> Khám phá OpenSearch (Tùy chọn)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://&lt;user_name&gt;.github.io/4-s3log-copy/4.1-updateiamrole/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://&lt;user_name&gt;.github.io/vi/4-s3log-copy/4.1-updateiamrole/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>18-04-2024</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i> <a href="https://www.linkedin.com/in/sutrinh/"  style="color:orange">Sử Trịnh  </a> <br>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng </a> <br>
+                <a href="https://www.linkedin.com/in/hiepnguyendt"  style="color:orange">Thanh Hiệp </a>
+               
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Triển khai công cụ hỏi đáp trò chuyện trên Nền tảng mở dành cho AI doanh nghiệp (OPEA) trên AWS</a> > <a href='/vi/4-s3log-copy/'>Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)</a> > Tích hợp OpenSearch
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tính-toán-yêu-cầu-lưu-trữ-cho-siêu-dữ-liệu-và-vectơ-trong-opensearch">Tính toán Yêu cầu Lưu trữ cho Siêu dữ liệu và Vectơ trong OpenSearch</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#xác-minh-triển-khai-opensearch">Xác minh triển khai OpenSearch</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Tích hợp OpenSearch
+            </h1>
+          
+
+        
+
+
+
+	<p><strong>Sử dụng OpenSearch làm Cơ sở dữ liệu Vector cho OPEA</strong></p>
+<p>OpenSearch là giải pháp tìm kiếm, phân tích và cơ sở dữ liệu vector mạnh mẽ. Được phát triển theo OpenSearch Software Foundation, một thành viên của Linux Foundation, giải pháp này cung cấp khả năng quản trị mở cho dự án OpenSearch trên GitHub. Amazon OpenSearch Service cung cấp giải pháp được quản lý giúp đơn giản hóa việc triển khai, mở rộng quy mô và hoạt động trên đám mây AWS. Cho dù là OpenSearch tự quản lý tại chỗ hay trên đám mây, hay sử dụng Amazon OpenSearch Service, OpenSearch đều cung cấp khả năng tìm kiếm vector hiệu suất cao để hỗ trợ tìm kiếm theo từ vựng và ngữ nghĩa nhanh, chính xác và có thể mở rộng quy mô—cho phép kết quả có liên quan hơn cho các trang web và ứng dụng AI tạo sinh.</p>
+<p>Về bản chất, OpenSearch là một công cụ tìm kiếm. Công cụ tìm kiếm đóng vai trò quan trọng trong cuộc sống hàng ngày của chúng ta, giúp chúng ta tìm thông tin, sản phẩm, điểm đến du lịch và nhà hàng. Khi sử dụng công cụ tìm kiếm, người dùng cung cấp truy vấn văn bản, đôi khi được tinh chỉnh bằng các bộ lọc bổ sung và công cụ sẽ trả về danh sách kết quả có liên quan đến mục đích tìm kiếm của người dùng.</p>
+<p>Là một cơ sở dữ liệu chuyên biệt, OpenSearch hoạt động cùng với các kho dữ liệu truyền thống (như cơ sở dữ liệu quan hệ) để cung cấp tìm kiếm thông lượng cao, độ trễ thấp trên khối lượng lớn văn bản phi cấu trúc, trường siêu dữ liệu có cấu trúc và nhúng vectơ. Nền tảng của OpenSearch là chỉ mục, tương tự như bảng cơ sở dữ liệu, lưu trữ tài liệu ở định dạng JSON. Mỗi tài liệu chứa các trường (khóa JSON) và các giá trị tương ứng. Người dùng có thể truy vấn tài liệu bằng văn bản, phạm vi số, ngày, dữ liệu địa lý, v.v. Khi tìm kiếm văn bản phi cấu trúc, OpenSearch xếp hạng tài liệu dựa trên điểm liên quan, ưu tiên các từ hiếm có nhiều trong tài liệu.</p>
+<p>Những tiến bộ gần đây trong Xử lý ngôn ngữ tự nhiên (NLP) và Mô hình ngôn ngữ lớn (LLM) đã thay đổi cách chúng ta tìm kiếm và truy xuất thông tin. LLM mã hóa ngôn ngữ thành không gian vectơ nhiều chiều, cho phép tìm kiếm khớp với nghĩa thay vì từ chính xác. Chúng cũng tạo ra các phản hồi thực tế, giống con người cho các truy vấn ngôn ngữ tự nhiên.</p>
+<p>Sự thay đổi này cho phép người dùng tương tác với các hệ thống truy xuất thông tin thông qua AI đàm thoại, tìm kiếm đa phương thức (văn bản, hình ảnh, âm thanh, video) và khám phá kiến ​​thức nâng cao.</p>
+<p>OpenSearch đóng hai vai trò quan trọng trong các ứng dụng hỗ trợ AI:</p>
+<ol>
+<li>
+<p>Tìm kiếm ngữ nghĩa với nhúng vectơ
+OpenSearch có thể lưu trữ và truy xuất các nhúng vectơ được tạo bởi các mô hình nhúng. Nó thực hiện tìm kiếm lân cận gần nhất để tìm các tài liệu có vectơ gần nhất với nhúng của truy vấn, cải thiện độ chính xác của tìm kiếm bằng cách khớp ý định thay vì từ khóa.</p>
+</li>
+<li>
+<p>Tạo tăng cường truy xuất (RAG) cho AI tạo ra
+OpenSearch có thể hoạt động như một cơ sở kiến ​​thức, truy xuất thông tin có liên quan để nâng cao phản hồi do LLM tạo ra. Bằng cách tích hợp OpenSearch vào OPEA, chúng tôi cải thiện độ chính xác và độ tin cậy của các đầu ra do AI tạo ra bằng cách dựa trên phản hồi trong dữ liệu thực tế, có thật.</p>
+</li>
+</ol>
+<p><img src="/images/2/image080.png" alt="VPC"></p>
+<p>Nhờ khả năng hoán đổi được cung cấp bởi OPEA, hầu hết các thành phần từ [ví dụ ChatQnA] mặc định (<a href="https://github.com/opea-project/GenAIExamples/tree/main/ChatQnA%29%28M">https://github.com/opea-project/GenAIExamples/tree/main/ChatQnA)(M</a>ô-đun 1). Tất nhiên, đối với mô-đun này, bạn sẽ cần triển khai OpenSearch. Ngoài ra, bạn sẽ sử dụng một trình thu thập và một dịch vụ vi mô chuẩn bị dữ liệu được thiết kế để hoạt động với các API truy vấn và lập chỉ mục của OpenSearch. Bạn có thể tìm thấy các thành phần này trong <a href="https://github.com/opea-project/GenAIComps/tree/main/comps">thư mục thành phần của dự án OPEA GitHub</a> .</p>
+<p><strong>Triển khai ChatQnA bằng OpenSearch làm cơ sở dữ liệu vector</strong>
+Đối với phòng thí nghiệm này, chúng tôi đã tạo một tập hợp thay đổi mà bạn có thể triển khai, bao gồm triển khai song song đầy đủ của ví dụ ChatQnA, trong cùng một cụm Kubernetes mà bạn đã sử dụng. Chúng tôi đã gói tất cả các thay đổi bạn cần trong một tập hợp thay đổi AWS CloudFormation mà bạn triển khai bằng lệnh bên dưới.</p>
+
+<div class="notices info" ><p>Chúng tôi đã sử dụng không gian tên Kubernetes, opensearch, để tách các pod và dịch vụ liên quan đến triển khai OpenSearch. Khi bạn sử dụng kubectl và các lệnh Kubernetes khác trong các ví dụ bên dưới, hãy đảm bảo đủ điều kiện cho lệnh bằng -n opensearch.</p>
+</div>
+
+<p>Quay lại Cloud Shell của bạn. Nếu shell đã kết thúc, hãy nhấp vào cửa sổ để mở dòng lệnh mới hoặc sử dụng biểu tượng ở đầu bảng điều khiển AWS để bắt đầu Cloud Shell mới. Sử dụng lệnh sau để triển khai bộ thay đổi OpenSearch.</p>
+<p><img src="/images/2/image081.png" alt="VPC"></p>
+<p>OpenSearch sẽ mất vài phút để triển khai. Để kiểm tra trạng thái, bạn có thể sử dụng kubectl để theo dõi trạng thái của các pod OpenSearch. Bạn có thể sử dụng lệnh</p>
+<p><img src="/images/2/image082.png" alt="VPC"></p>
+<p>để có đầu ra như thế này</p>
+<p><img src="/images/2/image083.png" alt="VPC"></p>
+<p>Chỉ tiếp tục khi bạn thấy pod opensearch-cluster-master-0 ở trạng thái Đang chạy.</p>
+<p><strong>Những thay đổi đối với ChatQnA cho OpenSearch</strong></p>
+<p>Phần lớn triển khai và thành phần cho ChatQnA giống hệt nhau khi bạn sử dụng OpenSearch làm back-end, so với các back-end cơ sở dữ liệu vector khác. OPEA chứa các thành phần để chuẩn bị và gửi dữ liệu đến cơ sở dữ liệu vector (chatqna-data-prep) và để truy xuất dữ liệu từ cơ sở dữ liệu vector (chatqna-retriever-usvc). Bạn có thể tìm thấy các triển khai OpenSearch cho các thành phần này trên GitHub.</p>
+<p>Về mặt sơ đồ, giờ đây bạn đang nói chuyện với OpenSearch thông qua các thành phần dành riêng cho OpenSearch:</p>
+<p><img src="/images/2/image084.png" alt="VPC"></p>
+<p><strong>Hiểu về Hệ thống phân tán của OpenSearch</strong>
+OpenSearch là cơ sở dữ liệu phân tán hoạt động trên một cụm các nút, mỗi nút có thể đảm nhiệm các vai trò khác nhau để tối ưu hóa hiệu suất và khả năng mở rộng. Một nút có thể phục vụ nhiều vai trò cùng lúc, cho phép nút thực hiện nhiều chức năng khác nhau trong cụm. Một số vai trò chính của nút bao gồm:</p>
+<ul>
+<li>
+<p><strong>Nút dữ liệu</strong>: Các nút này xử lý và lưu trữ dữ liệu. Chúng quản lý các yêu cầu lập chỉ mục và tìm kiếm, biến chúng thành xương sống của kiến ​​trúc phân tán của OpenSearch.</p>
+</li>
+<li>
+<p><strong>Nút quản lý cụm</strong>: Trước đây được gọi là nút chính, các nút này chịu trách nhiệm điều phối cụm. Chúng duy trì và phân phối trạng thái cụm, giám sát hoạt động của nút và đảm bảo tính ổn định của toàn bộ hệ thống. Mặc dù một nút có thể có cả vai trò dữ liệu và vai trò chính, nhưng việc tách các vai trò này thành phần cứng chuyên dụng được khuyến nghị để có hiệu suất và độ tin cậy tốt hơn.</p>
+</li>
+<li>
+<p><strong>Nút ML</strong>: Các nút này hỗ trợ khả năng học máy bằng cách chạy plugin ml-commons. Họ có thể lưu trữ và thực thi các mô hình học máy, bao gồm các mô hình ngôn ngữ lớn, cho phép xử lý dữ liệu và phân tích nâng cao.
+Bằng cách tận dụng phần cứng không đồng nhất, bạn có thể chỉ định vai trò cho các nút một cách chiến lược dựa trên chức năng dự định của chúng, đảm bảo sử dụng tài nguyên hiệu quả.</p>
+</li>
+</ul>
+<p>OpenSearch tương tác với người dùng thông qua API RESTful, với các yêu cầu thường được định tuyến qua bộ cân bằng tải để phân phối khối lượng công việc trên các nút dữ liệu khả dụng. Khi một nút dữ liệu nhận được yêu cầu, nó hoạt động như một bộ điều phối, phân bổ các yêu cầu phụ cho các nút dữ liệu có liên quan lưu trữ dữ liệu cần thiết. Mỗi nút trong số các nút này xử lý phần yêu cầu của mình và gửi kết quả trở lại nút điều phối, nút này tổng hợp chúng thành phản hồi cuối cùng trước khi trả về cho máy khách.</p>
+<p><strong>Hiểu về cách xử lý dữ liệu của OpenSearch</strong>
+Cốt lõi của cấu trúc dữ liệu của OpenSearch là chỉ mục, đóng vai trò là tập hợp hợp lý các tài liệu chứa dữ liệu có cấu trúc. Để quản lý phân phối dữ liệu hiệu quả, mỗi chỉ mục được chia thành các phân đoạn—các đơn vị lưu trữ độc lập cho phép xử lý song song.</p>
+<p>Mỗi phân đoạn về cơ bản là một phiên bản của Apache Lucene, một thư viện tìm kiếm mạnh mẽ dựa trên Java có chức năng đọc và ghi chỉ mục tìm kiếm. Khi tạo chỉ mục, bạn sẽ xác định số lượng phân mảnh chính, xác định cách dữ liệu sẽ được phân vùng ban đầu. Khi lập chỉ mục một tài liệu, OpenSearch sẽ gán tài liệu đó cho một phân mảnh chính bằng chiến lược phân phối ngẫu nhiên, đảm bảo hiệu suất lưu trữ và truy xuất cân bằng trên toàn cụm.</p>
+<p><img src="/images/2/image085.png" alt="VPC"></p>
+<p>OpenSearch phân phối các phân mảnh trên các nút dữ liệu khả dụng trong cụm. Bạn cũng có thể đặt một hoặc nhiều bản sao cho chỉ mục. Mỗi bản sao là một bản sao hoàn chỉnh của tập hợp các phân mảnh chính. Ví dụ: nếu bạn có 5 phân mảnh chính và một bản sao, tổng cộng bạn có 10 phân mảnh. Quyết định của bạn về số lượng phân mảnh chính, số lượng bản sao và số lượng nút dữ liệu có tầm quan trọng sống còn đối với sự thành công của cụm trong việc xử lý khối lượng công việc của bạn.</p>
+<p>Khi định cỡ cụm, sau đây là một số hướng dẫn giúp bạn đạt được thành công.</p>
+
+<div class="notices info" ><p>Tài liệu của Amazon OpenSearch Service cũng bao gồm các biện pháp thực hành tốt nhất về một số chủ đề, bao gồm cả việc định cỡ miền OpenSearch Service. Mặc dù các biện pháp thực hành tốt nhất này dành riêng cho từng dịch vụ, nhưng tài liệu nêu chi tiết các nguyên tắc đầu tiên sẽ giúp bạn định cỡ miền tự quản lý của mình.</p>
+</div>
+
+<h3 id="tính-toán-yêu-cầu-lưu-trữ-cho-siêu-dữ-liệu-và-vectơ-trong-opensearch">Tính toán Yêu cầu Lưu trữ cho Siêu dữ liệu và Vectơ trong OpenSearch</h3>
+<p>Để định cỡ cụm OpenSearch của bạn một cách chính xác, hãy bắt đầu bằng cách ước tính dung lượng lưu trữ cần thiết cho cả dữ liệu vectơ và siêu dữ liệu.</p>
+<p><strong>Tính toán lưu trữ vectơ</strong>
+Sử dụng công thức sau để xác định dung lượng lưu trữ cần thiết cho vectơ:</p>
+<p>Byte trên mỗi chiều
+×
+Số chiều
+×
+Số vectơ
+×
+(
+1
++
+Số bản sao
+)
+Byte trên mỗi chiều×Số chiều×Số vectơ×(1+Số bản sao)
+Ví dụ, nếu vectơ của bạn sử dụng số dấu phẩy động (mặc định, 4 byte trên mỗi chiều), có 768 chiều và bạn có 1 triệu vectơ với 1 bản sao, yêu cầu lưu trữ vectơ của bạn là:</p>
+<h1 id="2">4
+×
+768
+×
+1
+,
+000
+,
+000
+×
+2</h1>
+<p>6
+𝐺
+𝐵
+4×768×1.000.000×2=6GB
+<strong>Tính toán lưu trữ siêu dữ liệu</strong>
+Đối với siêu dữ liệu, hãy sử dụng công thức:</p>
+<p>(
+1
++
+Số lượng bản sao
+)
+×
+Kích thước dữ liệu nguồn (tính bằng byte)
+×
+1,10
+(1+Số lượng bản sao)×Kích thước dữ liệu nguồn (tính bằng byte)×1,10
+Ở đây, 1,10 là hệ số lạm phát tính đến sự khác biệt giữa kích thước dữ liệu nguồn thô và kích thước lưu trữ được lập chỉ mục. Nếu kích thước siêu dữ liệu của bạn là 100 GB với một bản sao, tổng dung lượng lưu trữ siêu dữ liệu cần thiết là:</p>
+<h1 id="110">2
+×
+100
+𝐺
+𝐵
+×
+1.10</h1>
+<p>220
+𝐺
+𝐵
+2×100GB×1.10=220GB
+<strong>Yêu cầu về tổng dung lượng lưu trữ</strong>
+Cộng dung lượng lưu trữ vector và dung lượng lưu trữ siêu dữ liệu để có được tổng dung lượng lưu trữ cần thiết cho cụm OpenSearch của bạn.</p>
+<h3 id="xác-minh-triển-khai-opensearch">Xác minh triển khai OpenSearch</h3>
+<p>Để xác minh triển khai, bạn sẽ sử dụng chuyển tiếp cổng Kubernetes để gọi các dịch vụ vi mô khác nhau. Bạn có thể xác minh triển khai OpenSearch đang hoạt động bằng cách thực hiện yêu cầu GET đối với URL cơ sở. OpenSearch lắng nghe trên cổng 9200. Sử dụng lệnh sau để ánh xạ cổng 9200 đến cổng cục bộ 9200 của bạn. (Nếu thiết bị đầu cuối Cloud Shell của bạn đã kết thúc, hãy nhấp vào cửa sổ hoặc mở thiết bị đầu cuối mới từ bảng điều khiển AWS.)</p>
+<p><img src="/images/2/image086.png" alt="VPC"></p>
+
+<div class="notices info" ><p>Trong phần hướng dẫn này, bạn sẽ sử dụng chuyển tiếp cổng cho một số dịch vụ. Chuyển tiếp cổng mất vài giây để bắt đầu, hãy đảm bảo đợi dòng xác nhận trông như thế này: Chuyển tiếp từ 127.0.0.1:9200 -&gt; 9200.</p>
+</div>
+
+<p>Bây giờ bạn có thể truy vấn OpenSearch trực tiếp trên localhost:9200. OpenSearch hỗ trợ giao tiếp được mã hóa thông qua Bảo mật lớp truyền tải (TLS) và được cung cấp kèm theo chứng chỉ demo không được cơ quan có thẩm quyền ký. Đối với mục đích demo, bạn sẽ sử dụng tùy chọn &ndash;insecure cho curl. Kiểm soát truy cập chi tiết của OpenSearch hỗ trợ cơ sở dữ liệu người dùng/mật khẩu nội bộ để xác thực HTTP cơ bản. Nó cũng có thể tích hợp với các nhà cung cấp danh tính Security Assertion Markup Language (SAML) để đăng nhập vào OpenSearch Dashboards (giao diện người dùng của OpenSearch). Bạn sẽ cung cấp xác thực HTTP với yêu cầu curl của mình.</p>
+<p>Truy vấn tới / chỉ trả về tình trạng và thông tin của cụm.</p>
+<p><img src="/images/2/image087.png" alt="VPC"></p>
+<p>Bạn sẽ nhận được kết quả như sau:</p>
+<p><img src="/images/2/image088.png" alt="VPC"></p>
+<p>Xin chúc mừng! Bạn đã tạo triển khai được OpenSearch hỗ trợ cho ví dụ ChatQnA của OPEA!</p>
+<p><strong>Làm việc với OPEA ChatQnA và OpenSearch</strong></p>
+<p>Bạn có thể làm việc với từng dịch vụ vi mô trong triển khai OpenSearch theo cùng cách bạn đã làm với triển khai Redis. Trong phần này, bạn sẽ thêm một tài liệu mẫu vào OpenSearch thông qua dịch vụ chatqna-data-prep, tạo nhúng và truy vấn OpenSearch bằng nhúng đó thông qua chatqna-retriever-usvc. Khi bạn thực hiện phần này của hướng dẫn, bạn sẽ thấy rằng việc chọn OpenSearch làm DB vectơ của mình có phần minh bạch ở cấp độ chuẩn bị dữ liệu và truy xuất dữ liệu. Dịch vụ OpenSearch cung cấp một mặt tiền cho phép các thành phần OPEA khác &ldquo;chỉ cần sử dụng nó&rdquo;.</p>
+<p><strong>Tải tài liệu lên OpenSearch</strong>
+Tải xuống tài liệu pdf mẫu bằng lệnh bên dưới</p>
+<p>curl -C - -O <a href="https://raw.githubusercontent.com/opea-project/GenAIComps/main/comps/third_parties/pathway/src/data/nke-10k-2023.pdf">https://raw.githubusercontent.com/opea-project/GenAIComps/main/comps/third_parties/pathway/src/data/nke-10k-2023.pdf</a></p>
+<p>Bây giờ bạn có thể sử dụng dịch vụ chatqna-data-prep để gửi tài liệu đó đến OpenSearch. Sử dụng lệnh sau để ánh xạ cổng cục bộ 6007 đến cổng dịch vụ 6007.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-data-prep 6007:6007 &amp;</p>
+<p>Chờ cho đến khi bạn thấy thông báo Chuyển tiếp từ 127.0.0.1:6007 -&gt; 6007, sau đó gửi tài liệu.</p>
+<p><img src="/images/2/image089.png" alt="VPC"></p>
+<p>Việc chuẩn bị dữ liệu sẽ mất khoảng 30 giây để xử lý tài liệu. Khi hoàn tất, bạn sẽ thấy</p>
+<p>{&ldquo;status&rdquo;: 200, &ldquo;message&rdquo;: &ldquo;Data preparation succeeded&rdquo;}</p>
+<p>Để xem OPEA sử dụng OpenSearch như thế nào, bạn có thể truy vấn OpenSearch trực tiếp. Một trong những bộ API cốt lõi của OpenSearch là API Compact Aligned Text (_cat). API _cat (hầu hết các API OpenSearch đều bắt đầu bằng dấu gạch dưới, _) là một API quản trị truy xuất thông tin về cụm, chỉ mục, nút, phân đoạn và nhiều thông tin khác của bạn. Để xem các chỉ mục trong OpenSearch, hãy thực hiện lệnh sau (nếu Cloud Shell của bạn đã kết thúc, bạn sẽ cần thiết lập lại chuyển tiếp cổng. Xem hướng dẫn ở trên)</p>
+<p>curl -XGET &lsquo;https://localhost:9200/_cat/indices?v&rsquo; &ndash;insecure -u admin:strongOpea0!</p>
+<p>Bạn sẽ thấy đầu ra như thế này:</p>
+<p><img src="/images/2/image090.png" alt="VPC"></p>
+<p>Khi kiểm tra đầu ra của OpenSearch, bạn sẽ thấy nhiều chỉ mục hệ thống khác nhau, thường được thêm dấu chấm. Trong số đó, nhật ký kiểm tra cung cấp thông tin chi tiết về cách sử dụng API, trong khi các chỉ mục như rag-opensearch và file-keys chứa dữ liệu từ ChatQnA.</p>
+<p>Một số chỉ mục có thể xuất hiện với trạng thái sức khỏe màu vàng, cho biết OpenSearch không thể phân bổ đầy đủ một phân đoạn. Điều này thường xảy ra khi một chỉ mục có cả phân đoạn chính và phân đoạn bản sao, nhưng chỉ có một nút khả dụng trong cụm. Vì OpenSearch thực thi rằng các phân đoạn chính và phân đoạn bản sao nằm trên các nút riêng biệt, nên bản sao vẫn chưa được chỉ định, dẫn đến trạng thái màu vàng. Để đảm bảo tính khả dụng cao và khả năng chịu lỗi, tốt nhất là cấu hình ít nhất một bản sao và triển khai nhiều nút dữ liệu.</p>
+<p>Các số liệu lưu trữ cung cấp thêm thông tin chi tiết về cấu trúc chỉ mục. Giá trị pri.store.size biểu thị tổng kích thước trên đĩa của các phân đoạn chính, trong khi store.size bao gồm cả phân đoạn chính và phân đoạn bản sao. Khi chỉ phân bổ các phân đoạn chính, các giá trị này vẫn giống hệt nhau. Số lượng tài liệu phản ánh số lượng tài liệu OpenSearch tồn tại trong một chỉ mục. Vì hệ thống tự động phân đoạn các tài liệu lớn trước khi lập chỉ mục, nên một tài liệu duy nhất—chẳng hạn như báo cáo tài chính của Nike—có thể được chia thành nhiều phân đoạn được lập chỉ mục, trong đó tài liệu Nike trong trường hợp này bao gồm 271 phân đoạn.</p>
+<p>Với dữ liệu được lập chỉ mục thành công, khả năng truy xuất của OpenSearch có thể được kiểm tra bằng dịch vụ vi mô thu thập. Trước khi thực hiện truy vấn, trước tiên phải tạo nhúng bằng dịch vụ nhúng. Ví dụ: để tìm kiếm doanh thu của Nike vào năm 2023, truy vấn phải được chuyển đổi thành nhúng và lưu trữ để xử lý. Sau khi tạo, cần thiết lập chuyển tiếp cổng cho dịch vụ vi mô chatqna-tei để cho phép giao tiếp liền mạch với OpenSearch.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-tei 9800:80 &amp;</p>
+<p><img src="/images/2/image091.png" alt="VPC"></p>
+<p>Để xác minh rằng cuộc gọi này thành công, bạn có thể sử dụng echo $question_embedding để xem nhúng vector. Bây giờ hãy sử dụng lệnh sau để gọi dịch vụ vi mô của trình thu thập và tìm các tài liệu khớp từ OpenSearch và lưu trữ chúng trong biến bash similar_docs. Thiết lập chuyển tiếp cổng:</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-retriever-usvc 9801:7000 &amp;</p>
+<p>Sau khi shell xác nhận rằng nó đang chuyển tiếp, hãy chạy lệnh truy xuất</p>
+<p><img src="/images/2/image092.png" alt="VPC"></p>
+<p>Một lần nữa, bạn có thể xác minh việc truy xuất bằng lệnh echo $similar_docs | jq .. Bây giờ bạn có thể khám phá trình xếp hạng lại, liên hệ trực tiếp với tài liệu tương tự và so sánh với câu hỏi Doanh thu của Nike năm 2023 là bao nhiêu?. Dịch vụ chatqna-teirerank mong đợi một mảng các khối văn bản. Thực hiện các lệnh sau để định dạng lại $similar_docs và lưu kết quả vào tệp cục bộ rerank.json</p>
+<p>texts=$(echo &ldquo;$similar_docs&rdquo; | jq -r &lsquo;[.retrieved_docs[].text | @json]&rsquo;)
+echo &ldquo;{&quot;query&quot;:&quot;Doanh thu của Nike năm 2023 là bao nhiêu?&quot;, &quot;texts&quot;: $texts}&rdquo; | jq -c . &gt; rerank.json</p>
+<p>Bây giờ hãy thiết lập chuyển tiếp cổng cho dịch vụ chatqna-teirerank.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-teirerank 9802:80 &amp;</p>
+<p>Sau khi shell phản hồi rằng nó đang chuyển tiếp, hãy thực hiện lệnh sau để xem kết quả xếp hạng lại</p>
+<p>curl -X POST localhost:9802/rerank <br>
+-d @rerank.json<br>
+-H &lsquo;Content-Type: application/json&rsquo;</p>
+<p>Bạn sẽ thấy đầu ra như thế này. Trong trường hợp này, mục được truy xuất nhiều nhất vẫn có điểm số tốt nhất sau khi xếp hạng lại, tiếp theo là mục thứ ba, thứ nhất và thứ hai.</p>
+<p>[{&ldquo;index&rdquo;:0,&ldquo;score&rdquo;:0.9984302},{&ldquo;index&rdquo;:3,&ldquo;score&rdquo;:0.9972289},{&ldquo;index&rdquo;:1,&ldquo;score&rdquo;:0.9776342},{&ldquo;index&rdquo;:2,&ldquo;score&rdquo;:0.84730965}]</p>
+<p>OPEA sẽ sử dụng kết quả đầu tiên làm ngữ cảnh cho dịch vụ chatqna-tgi. Bây giờ bạn đã liên hệ với từng dịch vụ vi mô và thấy dữ liệu và truy vấn được chuyển đổi như thế nào trong quá trình xử lý truy vấn của OPEA.</p>
+<p>Như một bài kiểm tra cuối cùng, bạn có thể gửi truy vấn đến bộ cân bằng tải để xem kết quả. Sử dụng lệnh sau để lấy địa chỉ của bộ cân bằng tải:</p>
+<p>kubectl get ingress -n opensearch</p>
+<p>Bạn sẽ thấy kết quả như thế này</p>
+<p>opensearch-ingress alb * opensearch-ingress-156457628.us-east-2.elb.amazonaws.com 80 46h</p>
+<p>Sao chép địa chỉ của bộ cân bằng tải và dán vào lệnh bên dưới để xem phản hồi của ChatQnA cho truy vấn &ldquo;Doanh thu của Nike năm 2023 là bao nhiêu?&rdquo;</p>
+<p>curl http://[TÊN DNS INGRESS CỦA BẠN]/v1/chatqna -H &ldquo;Content-Type: application/json&rdquo; -d &lsquo;{&ldquo;messages&rdquo;: &ldquo;Doanh thu của Nike năm 2023 là bao nhiêu?&rdquo;}&rsquo;</p>
+<p>Bạn sẽ thấy văn bản phát trực tuyến có câu trả lời: &ldquo;Trong năm tài chính 2023, NIKE, Inc. Doanh thu là 51,2 tỷ đô la.&rdquo;</p>
+<p>Để kiểm tra cuối cùng, hãy sao chép-dán URL ingress vào trình duyệt của bạn, tại đó bạn có thể thử truy vấn từ UI.</p>
+<p><strong>Kết luận</strong></p>
+<p>Trong nhiệm vụ này, OpenSearch được triển khai dưới dạng cơ sở dữ liệu vector và tích hợp của nó với OPEA đã được thử nghiệm. Các kết nối trực tiếp đã được thực hiện với các dịch vụ vi mô chuẩn bị dữ liệu, nhúng và truy xuất để hiểu sâu hơn về cách OpenSearch tương tác với các thành phần này. Ngoài ra, API truy vấn của OpenSearch đã được khám phá để kiểm tra khả năng truy xuất tài liệu của nó. Để khám phá thêm, mô-đun Explore OpenSearch (Tùy chọn) cung cấp cơ hội để đào sâu hơn vào API và thử nghiệm với các loại truy vấn khác nhau.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vi/4-s3log-copy/" title="Tích hợp Cơ sở dữ liệu Vector của riêng bạn (OpenSearch)"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vi/4-s3log-copy/4.2-creates3bucket/" title="Khám phá OpenSearch (Tùy chọn)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1740709594"></script>
+    <script src="/js/jquery.sticky.js?1740709594"></script>
+    <script src="/js/featherlight.min.js?1740709594"></script>
+    <script src="/js/highlight.pack.js?1740709594"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1740709594"></script>
+    <script src="/js/learn.js?1740709594"></script>
+    <script src="/js/hugo-learn.js?1740709594"></script>
+
+    <link href="/mermaid/mermaid.css?1740709594" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1740709594"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

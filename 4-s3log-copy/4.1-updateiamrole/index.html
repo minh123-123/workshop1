@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.144.2">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>OpenSearch integration :: WORK WITH AMAZON SYSTEM MANAGER - SESSION MANAGER</title>
+
+    
+    <link href="/css/nucleus.css?1740709594" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1740709594" rel="stylesheet">
+    <link href="/css/hybrid.css?1740709594" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1740709594" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1740709594" rel="stylesheet">
+    <link href="/css/auto-complete.css?1740709594" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1740709594" rel="stylesheet">
+    <link href="/css/theme.css?1740709594" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1740709594" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1740709594" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1740709594"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/4-s3log-copy/4.1-updateiamrole/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1740709594"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1740709594"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/\u003cuser_name\u003e.github.io\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1740709594"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-introduce/" title="Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-introduce/">
+           <b> 1. </b> Introduction
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-prerequiste/" title="Preparation " class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-prerequiste/">
+           <b> 2. </b> Preparation 
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-prerequiste/2.1-createec2/" title="Using Workshop Studio" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-prerequiste/2.1-createec2/">
+           <b> 2.1 </b> Using Workshop Studio
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-prerequiste/2.2-createiamrole/" title="Using Your Own Account" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-prerequiste/2.2-createiamrole/">
+           <b> 2.2 </b> Using Your Own Account
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-accessibilitytoinstances/" title="Learn ChatQnA RAG application using OPEA on EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-accessibilitytoinstances/">
+           <b> 3. </b> Learn ChatQnA RAG application using OPEA on EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-accessibilitytoinstances/3.1-deploy-chatqna/" title="Deploy ChatQnA" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-accessibilitytoinstances/3.1-deploy-chatqna/">
+           <b> 3.1. </b> Deploy ChatQnA
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/" title="Explore the OPEA ChatQnA deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/">
+           <b> 3.2. </b> Explore the OPEA ChatQnA deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-accessibilitytoinstances/3.3-private-instance-copy/" title="Test the deployment and verify RAG workflow" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-accessibilitytoinstances/3.3-private-instance-copy/">
+           <b> 3.3. </b> Test the deployment and verify RAG workflow
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log/" title="Customize your RAG application with LLM Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log/">
+           <b> 4. </b> Customize your RAG application with LLM Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log/4.1-updateiamrole/" title="Deploy Guardrails" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log/4.1-updateiamrole/">
+           <b> 4.1 </b> Deploy Guardrails
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log/4.2-creates3bucket/" title="Verify Guardrails behaviour" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log/4.2-creates3bucket/">
+           <b> 4.2 </b> Verify Guardrails behaviour
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy/" title="Integrate your own Vector Database (OpenSearch)" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/4-s3log-copy/">
+           <b> 5. </b> Integrate your own Vector Database (OpenSearch)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy/4.1-updateiamrole/" title="OpenSearch integration" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/4-s3log-copy/4.1-updateiamrole/">
+           <b> 5.1 </b> OpenSearch integration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy/4.2-creates3bucket/" title="Explore OpenSearch (Optional)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy/4.2-creates3bucket/">
+           <b> 5.2 </b> Explore OpenSearch (Optional)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-2/" title="Extend the LLM inference beyond AWS through Remote Inference" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-2/">
+           <b> 6. </b> Extend the LLM inference beyond AWS through Remote Inference
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-2/4.1-updateiamrole/" title="Integrate Inference API (Denvr Cloud and Intel Gaudi AI Accelerator)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-2/4.1-updateiamrole/">
+           <b> 6.1 </b> Integrate Inference API (Denvr Cloud and Intel Gaudi AI Accelerator)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-2/4.2-creates3bucket/" title="Verify OPEA Chat QnA with Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-2/4.2-creates3bucket/">
+           <b> 6.2 </b> Verify OPEA Chat QnA with Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-3/" title="Test the deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-3/">
+           <b> 7. </b> Test the deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-3/4.1-updateiamrole/" title="Set Bedrock integration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-3/4.1-updateiamrole/">
+           <b> 7.1 </b> Set Bedrock integration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-3/4.2-creates3bucket/" title="Verify OPEA Chat QnA with Inferenece API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-3/4.2-creates3bucket/">
+           <b> 7.2 </b> Verify OPEA Chat QnA with Inferenece API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-s3log-copy-3/4.2-creates3bucket-copy/" title="Test the deployment and verify the RAG workflow" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-s3log-copy-3/4.2-creates3bucket-copy/">
+           <b> 7.3 </b> Test the deployment and verify the RAG workflow
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="http://&lt;user_name&gt;.github.io/4-s3log-copy/4.1-updateiamrole/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://&lt;user_name&gt;.github.io/vi/4-s3log-copy/4.1-updateiamrole/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>18-04-2024</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i> <a href="https://www.linkedin.com/in/sutrinh/"  style="color:orange">Sử Trịnh  </a> <br>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng </a> <br>
+                <a href="https://www.linkedin.com/in/hiepnguyendt"  style="color:orange">Thanh Hiệp </a>
+               
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Deploy Open Platform for Enterprise AI (OPEA) Chat Q&A on AWS</a> > <a href='/4-s3log-copy/'>Integrate your own Vector Database (OpenSearch)</a> > OpenSearch integration
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#calculating-storage-requirements-for-metadata-and-vectors-in-opensearch">Calculating Storage Requirements for Metadata and Vectors in OpenSearch</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#verify-the-opensearch-deployment">Verify the OpenSearch Deployment</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              OpenSearch integration
+            </h1>
+          
+
+        
+
+
+
+	<p><strong>Using OpenSearch as the Vector Database for OPEA</strong></p>
+<p>OpenSearch is a powerful search, analytics, and vector database solution. Developed under the OpenSearch Software Foundation, a member of the Linux Foundation, it provides open governance for the OpenSearch project on GitHub. Amazon OpenSearch Service offers a managed solution that simplifies deployment, scaling, and operations in the AWS cloud. Whether self-managing OpenSearch on-premises or in the cloud, or using Amazon OpenSearch Service, OpenSearch delivers high-performance vector search capabilities to support fast, accurate, and scalable lexical and semantic search—enabling more relevant results for websites and Generative AI applications.</p>
+<p>At its core, OpenSearch is a search engine. Search engines play a vital role in our daily lives, helping us find information, products, travel destinations, and restaurants. When using a search engine, users provide a text query, sometimes refined with additional filters, and the engine returns a list of results relevant to the user&rsquo;s search intent.</p>
+<p>As a specialized database, OpenSearch works alongside traditional data stores (such as relational databases) to deliver low-latency, high-throughput search across large volumes of unstructured text, structured metadata fields, and vector embeddings. The foundation of OpenSearch is the index, similar to a database table, which stores documents in JSON format. Each document contains fields (JSON keys) and corresponding values. Users can query documents using text, numeric ranges, dates, geographic data, and more. When searching unstructured text, OpenSearch ranks documents based on a relevance score, favoring rare words highly concentrated within the document.</p>
+<p>Recent advancements in Natural Language Processing (NLP) and Large Language Models (LLMs) have transformed how we search for and retrieve information. LLMs encode language into high-dimensional vector spaces, enabling searches that match meaning rather than exact words. They also generate realistic, human-like responses to natural language queries.</p>
+<p>This shift allows users to interact with information retrieval systems through conversational AI, multimodal search (text, images, audio, video), and advanced knowledge discovery.</p>
+<p>OpenSearch plays two critical roles in AI-powered applications:</p>
+<ol>
+<li>
+<p>Semantic Search with Vector Embeddings
+OpenSearch can store and retrieve vector embeddings generated by embedding models. It performs nearest-neighbor searches to find documents whose vectors are closest to the query&rsquo;s embedding, improving search accuracy by matching intent rather than keywords.</p>
+</li>
+<li>
+<p>Retrieval-Augmented Generation (RAG) for Generative AI
+OpenSearch can function as a knowledge base, retrieving relevant information to enhance LLM-generated responses. By integrating OpenSearch into OPEA, we improve the accuracy and reliability of AI-generated outputs by grounding responses in factual, real-world data.</p>
+</li>
+</ol>
+<p><img src="/images/2/image080.png" alt="VPC"></p>
+<p>Thanks to the interchangeability offered by OPEA, most of the components from the default <a href="https://github.com/opea-project/GenAIExamples/tree/main/ChatQnA">ChatQnA example</a>(Module 1). Of course, for this module, you&rsquo;ll need to deploy OpenSearch. Additionally, you&rsquo;ll use a retriever and a data prep microservice designed to work with OpenSearch&rsquo;s query and indexing APIs. You can find these components in the <a href="https://github.com/opea-project/GenAIComps/tree/main/comps">OPEA GitHub project&rsquo;s components directory</a> .</p>
+<p><strong>Deploying ChatQnA using OpenSearch as vector database</strong>
+For this lab, we&rsquo;ve created a changeset that you can deploy that contains a full, parallel deployment of the ChatQnA example, in the same Kubernetes cluster you&rsquo;ve been using. We&rsquo;ve wrapped all of the changes you need in an AWS CloudFormation changeset that you deploy with the command below.</p>
+
+<div class="notices info" ><p>We&rsquo;ve used a Kubernetes namespace, opensearch, to separate out the pods and services pertaining to the OpenSearch deployment. When you use kubectl and other Kubernetes commands in the below examples, be sure to qualify the command with -n opensearch.</p>
+</div>
+
+<p>Return to your Cloud Shell. If the shell has terminated, click in the window to open a new command line, or use the icon at the top of the AWS console to start a new Cloud Shell. Use the following command to deploy the OpenSearch change set.</p>
+<p><img src="/images/2/image081.png" alt="VPC"></p>
+<p>OpenSearch will take a few minutes to deploy. To check the status, you can use kubectl to monitor the state of the OpenSearch pods. You can use the command</p>
+<p><img src="/images/2/image082.png" alt="VPC"></p>
+<p>to get output like this</p>
+<p><img src="/images/2/image083.png" alt="VPC"></p>
+<p>Only continue when you see the opensearch-cluster-master-0 pod in the Running state.</p>
+<p><strong>Changes to ChatQnA for OpenSearch</strong></p>
+<p>Much of the deployment and components for ChatQnA are identical when you use OpenSearch as a back end, compared with other vector database back ends. OPEA contains components for preparing and sending data to the vector database (chatqna-data-prep) and for retrieving data from the vector database (chatqna-retriever-usvc). You can find the OpenSearch implementations  for these components on GitHub.</p>
+<p>Schematically, you are now talking to OpenSearch via the OpenSearch-specific components:</p>
+<p><img src="/images/2/image084.png" alt="VPC"></p>
+<p><strong>Understanding OpenSearch’s Distributed System</strong>
+OpenSearch is a distributed database that operates on a cluster of nodes, each of which can take on different roles to optimize performance and scalability. A node can serve multiple roles simultaneously, enabling it to perform various functions within the cluster. Some of the key node roles include:</p>
+<ul>
+<li>
+<p><strong>Data Nodes</strong>: These nodes handle data storage and processing. They manage indexing and search requests, making them the backbone of OpenSearch’s distributed architecture.</p>
+</li>
+<li>
+<p><strong>Cluster Manager Nodes</strong>: Previously known as master nodes, these are responsible for orchestrating the cluster. They maintain and distribute the cluster state, monitor node activity, and ensure overall system stability. While a node can have both data and master roles, separating these roles onto dedicated hardware is recommended for better performance and reliability.</p>
+</li>
+<li>
+<p><strong>ML Nodes</strong>: These nodes support machine learning capabilities by running the ml-commons plugin. They can host and execute machine learning models, including large language models, enabling advanced data processing and analytics.
+By leveraging heterogeneous hardware, you can strategically assign roles to nodes based on their intended function, ensuring efficient resource utilization.</p>
+</li>
+</ul>
+<p>OpenSearch interacts with users through a RESTful API, with requests typically routed via a load balancer to distribute the workload across available data nodes. When a data node receives a request, it acts as a coordinator, delegating sub-requests to relevant data nodes that store the required data. Each of these nodes processes its portion of the request and sends results back to the coordinating node, which aggregates them into a final response before returning it to the client.</p>
+<p><strong>Understanding OpenSearch’s Data Handling</strong>
+At the core of OpenSearch&rsquo;s data structure is the index, which serves as a logical collection of documents containing structured data. To manage data distribution efficiently, each index is divided into shards—independent storage units that allow parallel processing.</p>
+<p>Each shard is essentially an instance of Apache Lucene, a powerful Java-based search library that reads and writes search indices. When an index is created, you define the number of primary shards, which determines how the data will be initially partitioned. When a document is indexed, OpenSearch assigns it to a primary shard using a randomized distribution strategy, ensuring balanced storage and retrieval performance across the cluster.</p>
+<p><img src="/images/2/image085.png" alt="VPC"></p>
+<p>OpenSearch distributes the shards across the available data nodes in the cluster. You can also set one or more replicas for the index. Each replica is a complete copy of the set of primary shards. For example, if you have 5 primary shards and one replica, you have 10 shards in total. Your decisions about the primary shard count, the replica count, and the number of data nodes is of critical importance to the sucess of your cluster in handling your workload.</p>
+<p>When sizing your cluster, here are some guidelines to help you achieve success.</p>
+
+<div class="notices info" ><p>Amazon OpenSearch Service&rsquo;s documentation also includes best practices on a number of topics, including sizing OpenSearch Service domains . While these best practices are service-specific, the documentation details first principles that will help you size your self-managed domain as well.</p>
+</div>
+
+<h3 id="calculating-storage-requirements-for-metadata-and-vectors-in-opensearch">Calculating Storage Requirements for Metadata and Vectors in OpenSearch</h3>
+<p>To properly size your OpenSearch cluster, start by estimating the storage needed for both vector data and metadata.</p>
+<p><strong>Vector Storage Calculation</strong>
+Use the following formula to determine the storage required for vectors:</p>
+<p>Bytes per dimension
+×
+Number of dimensions
+×
+Number of vectors
+×
+(
+1
++
+Number of replicas
+)
+Bytes per dimension×Number of dimensions×Number of vectors×(1+Number of replicas)
+For example, if your vectors use floating-point numbers (default, 4 bytes per dimension), are 768-dimensional, and you have 1 million vectors with 1 replica, your vector storage requirement is:</p>
+<h1 id="2">4
+×
+768
+×
+1
+,
+000
+,
+000
+×
+2</h1>
+<p>6
+𝐺
+𝐵
+4×768×1,000,000×2=6GB
+<strong>Metadata Storage Calculation</strong>
+For metadata, use the formula:</p>
+<p>(
+1
++
+Number of replicas
+)
+×
+Size of source data (in bytes)
+×
+1.10
+(1+Number of replicas)×Size of source data (in bytes)×1.10
+Here, 1.10 is an inflation factor accounting for the difference between raw source data size and indexed storage size. If your metadata size is 100 GB with one replica, the total metadata storage needed is:</p>
+<h1 id="110">2
+×
+100
+𝐺
+𝐵
+×
+1.10</h1>
+<p>220
+𝐺
+𝐵
+2×100GB×1.10=220GB
+<strong>Total Storage Requirement</strong>
+Sum the vector storage and metadata storage to get the total storage needed for your OpenSearch cluster.</p>
+<h3 id="verify-the-opensearch-deployment">Verify the OpenSearch Deployment</h3>
+<p>To verify the deployment, you will use Kubernetes port forwarding to call the various microservices. You can verify the OpenSearch deployment is working by executing a GET request against the base URL. OpenSearch listens on port 9200. Use the following command to map port 9200 to your local port 9200. (If your Cloud Shell terminal has terminated, click in the window or open a new terminal from the AWS console.)</p>
+<p><img src="/images/2/image086.png" alt="VPC"></p>
+
+<div class="notices info" ><p>In this section of the guide, you will use port forwarding for a number of services. The port forwarding takes a few seconds to start, be sure to wait for a confirmation line looking like this: Forwarding from 127.0.0.1:9200 -&gt; 9200.</p>
+</div>
+
+<p>Now you can query OpenSearch directly on localhost:9200. OpenSearch supports encrypted communication via Transport Layer Security (TLS), and ships with a demo certificate that is not signed by an authority. For demo purposes, you&rsquo;ll use the &ndash;insecure option for curl. OpenSearch&rsquo;s fine-grained access control supports an internal user/password database for basic HTTP authentication. It can also integrate with Security Assertion Markup Language (SAML) identity providers for login to OpenSearch Dashboards (OpenSearch&rsquo;s user interface). You&rsquo;ll provide HTTP authentication with your curl request.</p>
+<p>A query to / simply returns cluster health and information.</p>
+<p><img src="/images/2/image087.png" alt="VPC"></p>
+<p>You should receive output like this:</p>
+<p><img src="/images/2/image088.png" alt="VPC"></p>
+<p>Congratulations! You&rsquo;ve created an OpenSearch-backed deployment of OPEA&rsquo;s ChatQnA example!</p>
+<p><strong>Working with OPEA ChatQnA and OpenSearch</strong></p>
+<p>You can work with the individual microservices in the OpenSearch deployment in the same way you did with the Redis deployment. In this section you&rsquo;ll add a sample document to OpenSearch via the chatqna-data-prep service, generate an embedding, and query OpenSearch with that embedding via the chatqna-retriever-usvc. As you work through this section of the guide, you&rsquo;ll see that choosing OpenSearch as your vector DB is somewhat transparent at the data prep and retriever levels. The OpenSearch service provides a facade that enables other OPEA components to &ldquo;just use it&rdquo;.</p>
+<p><strong>Upload a document to OpenSearch</strong>
+Download the sample pdf document with the below command</p>
+<p>curl -C - -O <a href="https://raw.githubusercontent.com/opea-project/GenAIComps/main/comps/third_parties/pathway/src/data/nke-10k-2023.pdf">https://raw.githubusercontent.com/opea-project/GenAIComps/main/comps/third_parties/pathway/src/data/nke-10k-2023.pdf</a></p>
+<p>Now you can use the chatqna-data-prep service to send that document to OpenSearch. Use the following command to map local port 6007 to the services port 6007.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-data-prep 6007:6007 &amp;</p>
+<p>Wait until you see the message Forwarding from 127.0.0.1:6007 -&gt; 6007, and then send the document.</p>
+<p><img src="/images/2/image089.png" alt="VPC"></p>
+<p>Data prep will take about 30 seconds processing the document. When it&rsquo;s done you will see</p>
+<p>{&ldquo;status&rdquo;: 200, &ldquo;message&rdquo;: &ldquo;Data preparation succeeded&rdquo;}</p>
+<p>To see how OPEA uses OpenSearch, you can query OpenSearch directly. One of OpenSearch&rsquo;s core sets of APIs is the Compact Aligned Text (_cat) API. The _cat API (most OpenSearch APIs begin with an underscore, _) is an administrative API that retrieves information on your cluster, indices, nodes, shards, and more. To see the indices in OpenSearch, execute the following command (if your Cloud Shell has terminated, you&rsquo;ll need to re-establish the port forwarding. See above for instructions)</p>
+<p>curl -XGET &lsquo;https://localhost:9200/_cat/indices?v&rsquo; &ndash;insecure -u admin:strongOpea0!</p>
+<p>You should see output like this:</p>
+<p><img src="/images/2/image090.png" alt="VPC"></p>
+<p>When inspecting the OpenSearch output, you will come across various system indices, often prefixed with a dot. Among them, the audit log provides insights into API usage, while indices like rag-opensearch and file-keys contain data from ChatQnA.</p>
+<p>Some indices may appear with a yellow health status, indicating that OpenSearch could not fully allocate a shard. This typically happens when an index has both a primary and a replica shard, but only one node is available in the cluster. Since OpenSearch enforces that primary and replica shards reside on separate nodes, the replica remains unassigned, leading to a yellow status. To ensure high availability and fault tolerance, it is best to configure at least one replica and deploy multiple data nodes.</p>
+<p>The storage metrics provide further insights into index structure. The pri.store.size value represents the total on-disk size of primary shards, while store.size includes both primary and replica shards. When only the primary shards are allocated, these values remain identical. The document count reflects how many OpenSearch documents exist within an index. Since the system automatically chunks large documents before indexing, a single document—such as a Nike financial report—may be split into multiple indexed segments, with the Nike document in this case comprising 271 chunks.</p>
+<p>With data successfully indexed, OpenSearch’s retrieval capabilities can be tested using the retriever microservice. Before executing a query, an embedding must first be generated using the embedding service. For example, to search for Nike’s revenue in 2023, the query must be transformed into an embedding and stored for processing. Once generated, port forwarding should be established for the chatqna-tei microservice to enable seamless communication with OpenSearch.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-tei 9800:80 &amp;</p>
+<p><img src="/images/2/image091.png" alt="VPC"></p>
+<p>To verify that this call succeeded, you can use echo $question_embedding to see the vector embedding. Now use the following command to call the retriever microservice and find matching documents from OpenSearch and store them in the similar_docs bash variable. Establish port forwarding:</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-retriever-usvc 9801:7000 &amp;</p>
+<p>After the shell acknowledges that it&rsquo;s forwarding, run the retrieval</p>
+<p><img src="/images/2/image092.png" alt="VPC"></p>
+<p>Again, you can verify the retrieval with echo $similar_docs | jq .. Now you can explore the reranker, contacting it directly with the similar docs and compare with the question What was Nike Revenue in 2023?. The chatqna-teirerank service expects an array of text blocks. Execute the following commands to reformat $similar_docs and save the result in the local file rerank.json</p>
+<p>texts=$(echo &ldquo;$similar_docs&rdquo; | jq -r &lsquo;[.retrieved_docs[].text | @json]&rsquo;)
+echo &ldquo;{&quot;query&quot;:&quot;What was Nike Revenue in 2023?&quot;, &quot;texts&quot;: $texts}&rdquo; | jq -c . &gt; rerank.json</p>
+<p>Now establish port forwarding for the chatqna-teirerank service.</p>
+<p>kubectl port-forward -n opensearch svc/chatqna-teirerank 9802:80 &amp;</p>
+<p>Once the shell responds that it&rsquo;s forwarding, execute the following command to see the rerank results</p>
+<p>curl -X POST localhost:9802/rerank <br>
+-d @rerank.json<br>
+-H &lsquo;Content-Type: application/json&rsquo;</p>
+<p>You should see output like this. In this case, the top-retrieved item still has the best score after reranking, followed by the third, first, and second.</p>
+<p>[{&ldquo;index&rdquo;:0,&ldquo;score&rdquo;:0.9984302},{&ldquo;index&rdquo;:3,&ldquo;score&rdquo;:0.9972289},{&ldquo;index&rdquo;:1,&ldquo;score&rdquo;:0.9776342},{&ldquo;index&rdquo;:2,&ldquo;score&rdquo;:0.84730965}]</p>
+<p>OPEA will use the first result as context for the chatqna-tgi service. You&rsquo;ve now contacted each of the microservices and seen how the data and query are transformed during OPEA&rsquo;s query handling.</p>
+<p>As a final test, you can send the query to the load balancer to see the result. Use the following command to get the address of the load balancer:</p>
+<p>kubectl get ingress -n opensearch</p>
+<p>You should see output like this</p>
+<p>opensearch-ingress alb * opensearch-ingress-156457628.us-east-2.elb.amazonaws.com 80 46h</p>
+<p>Copy the address of the load balancer and paste it in the below command to see ChatQnA&rsquo;s response for the query &ldquo;What was the revenue of Nike in 2023?&rdquo;</p>
+<p>curl http://[YOUR INGRESS DNS NAME]/v1/chatqna -H &ldquo;Content-Type: application/json&rdquo; -d &lsquo;{&ldquo;messages&rdquo;: &ldquo;What was the revenue of Nike in 2023?&rdquo;}&rsquo;</p>
+<p>You should see streaming text with the answer: &ldquo;In fiscal 2023, NIKE, Inc. Revenues were $51.2 billion.&rdquo;</p>
+<p>As a final test, copy-paste the ingress URL to your browser, where you can try out the query from the UI.</p>
+<p><strong>Conclusion</strong></p>
+<p>In this task, OpenSearch was deployed as the vector database and its integration with OPEA was tested. Direct connections were made to the data preparation, embedding, and retriever microservices to gain a deeper understanding of how OpenSearch interacts with these components. Additionally, OpenSearch’s query API was explored to examine its document retrieval capabilities. For further exploration, the Explore OpenSearch (Optional) module provides an opportunity to delve deeper into the API and experiment with different query types.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/4-s3log-copy/" title="Integrate your own Vector Database (OpenSearch)"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/4-s3log-copy/4.2-creates3bucket/" title="Explore OpenSearch (Optional)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.min.js?1740709594"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1740709594"></script>
+    <script src="/js/jquery.sticky.js?1740709594"></script>
+    <script src="/js/featherlight.min.js?1740709594"></script>
+    <script src="/js/highlight.pack.js?1740709594"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1740709594"></script>
+    <script src="/js/learn.js?1740709594"></script>
+    <script src="/js/hugo-learn.js?1740709594"></script>
+
+    <link href="/mermaid/mermaid.css?1740709594" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1740709594"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
